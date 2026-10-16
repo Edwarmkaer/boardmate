@@ -21,4 +21,6 @@ The user requires consultation before resource-intensive local processes. This i
 
 ## Linux packaging
 
-Linux-only AppImage and `.deb` packaging is being prepared on GitHub Actions. The workflow retains read-only repository permissions, verifies amd64 Debian metadata and produces SHA-256 checksums. Local builds/installations are not part of this step.
+Linux-only AppImage and `.deb` packaging completed successfully on GitHub Actions: https://github.com/Edwarmkaer/boardmate/actions/runs/38983154681. The generated packages are `boardmate_0.1.0_amd64.deb` (3.80 MiB) and `boardmate_0.1.0_amd64.AppImage` (78.96 MiB). Project checks and Rust tests ran successfully in the packaging job. The workflow retains read-only repository permissions, verifies amd64 Debian metadata and produces SHA-256 checksums. Local builds/installations are not part of this step.
+
+Generated installers are distributed as the `boardmate-linux-x86_64` workflow artifact (14-day retention). Native startup and physical hardware behavior have not yet been verified; generation and checksum checks do not establish runtime compatibility on every Linux distribution.

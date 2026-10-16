@@ -59,6 +59,18 @@ USB HID/vendor-specific devices need another adapter. A platform being listed me
 
 See [protocol and firmware](docs/protocol.md) for messages, BLE UUIDs and an ESP32/Pico MicroPython serial example. Firmware for Wi-Fi, BLE and Classic is a separate next step; the host adapters are already implemented. The reference firmware has host tests but has not been flashed or physically verified in this bootstrap.
 
+## Linux test installers
+
+[Download the Linux x86_64 packages](https://github.com/Edwarmkaer/boardmate/actions/runs/38983154681/artifacts/12081898440) (GitHub sign-in required; this workflow artifact is retained for 14 days). Extract the ZIP first. These are unsigned test packages, not a signed stable release.
+
+On Ubuntu/Debian, install the `.deb` through your package manager:
+
+```sh
+sudo apt install ./boardmate_0.1.0_amd64.deb
+```
+
+Alternatively, make `boardmate_0.1.0_amd64.AppImage` executable and run it without installation. Use `sha256sum --check SHA256SUMS.txt` in the extracted directory to verify both files. The app starts in explicit demonstration mode unless native provider environment variables are configured. Physical hardware testing remains separate.
+
 ## Monorepo
 
 ```text
