@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+dist/
+.turbo/
+target/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+playwright-report/
+test-results/
+.superpowers/
+screenshots/
+__pycache__/
+*.tsbuildinfo

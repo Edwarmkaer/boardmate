@@ -1,0 +1,95 @@
+:root {
+  color-scheme: light;
+  --background: oklch(0.97 0 0);
+  --surface: oklch(1 0 0);
+  --ink: oklch(0.22 0.01 110);
+  --muted: oklch(0.46 0.015 110);
+  --primary: oklch(0.35 0.075 110);
+  --primary-hover: oklch(0.29 0.065 110);
+  --border: oklch(0.88 0.008 110);
+  --subtle: oklch(0.96 0.008 110);
+  --danger: oklch(0.43 0.16 28);
+  --focus: oklch(0.48 0.1 110);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--background);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 550;
+  transition: background 150ms ease-out;
+}
+.button:hover:not(:disabled) {
+  background: var(--subtle);
+}
+.button--primary {
+  background: var(--primary);
+  color: var(--surface);
+  border-color: var(--primary);
+}
+.button--primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+.button--quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.status--success {
+  color: var(--primary);
+}
+.status--warning {
+  color: oklch(0.43 0.085 65);
+}
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@boardmate/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 1420",
+    "build": "next build",
+    "check": "tsc --noEmit",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@boardmate/protocol": "workspace:*",
+    "@boardmate/sdk": "workspace:*",
+    "@boardmate/ui": "workspace:*",
+    "@tauri-apps/api": "2.12.4",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@boardmate/typescript-config": "workspace:*",
+    "@tauri-apps/cli": "2.12.3"
+  }
+}

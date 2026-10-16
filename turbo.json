@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalPassThroughEnv": ["CI", "PLAYWRIGHT_CHANNEL"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^check"],
+      "outputs": [".next/**", "!.next/cache/**", "out/**"]
+    },
+    "check": { "dependsOn": ["^check"], "outputs": [] },
+    "test": { "dependsOn": ["^check"], "outputs": [] },
+    "dev": { "cache": false, "persistent": true }
+  }
+}
