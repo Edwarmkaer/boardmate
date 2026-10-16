@@ -46,7 +46,7 @@ Keys stay in the Rust process and never enter the frontend bundle. Do not bundle
 
 ## Hardware connections
 
-Use **Dispositivos → Conectar placa** in the native app. A board must implement boardmate's JSON protocol; an arbitrary Arduino sketch will not respond to discovery.
+Use **Dispositivos → Conectar dispositivo** in the native app. A board must implement boardmate's JSON protocol; an arbitrary Arduino sketch will not respond to discovery.
 
 | Connection | Implementation | Platform scope |
 | --- | --- | --- |
@@ -91,8 +91,8 @@ python3 -m unittest discover -s firmware/micropython -p 'test_*.py'
 pnpm desktop:build
 ```
 
-CI runs frontend/browser checks, Rust checks on three OSes and native compilation on three OSes. The manual **Package desktop** workflow produces installers as downloadable workflow artifacts. Signing and notarization are not configured; those artifacts are development builds, not signed public releases.
+CI runs frontend/browser checks, Rust checks on three OSes and native compilation on three OSes. The manual **Package desktop artifacts** workflow produces installers as downloadable workflow artifacts. Signing and notarization are not configured; those artifacts are development builds, not signed public releases.
 
-Local bootstrap verification covers the production web build, browser interactions, Rust core/runtime/provider/transport tests, and reference firmware protocol tests. Local native compilation requires GTK/WebKit packages that were unavailable in the bootstrap environment; check the GitHub Actions results for native compilation. Live Groq inference and physical serial/Bluetooth hardware require separate validation.
+Bootstrap verification covers the production web build, browser interactions, Rust core/runtime/provider/transport tests, and reference firmware protocol tests. [GitHub Actions](https://github.com/Edwarmkaer/boardmate/actions/runs/38852946152) also compiled the native application successfully on Linux, macOS and Windows. This confirms compilation, not physical hardware behavior. Live Groq inference, physical serial/Bluetooth hardware and installer packaging require separate validation.
 
 Contributions: [CONTRIBUTING.md](CONTRIBUTING.md). License: [MIT](LICENSE).

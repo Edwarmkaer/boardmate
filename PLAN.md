@@ -29,7 +29,7 @@ Use pnpm and Turborepo, Next.js static export and Tauri 2. Keep credentials in t
 - [x] Implement transport boundaries, bounded message framing and explicit platform availability; verify parsing and local WebSocket exchange.
 - [x] Connect Tauri commands to the native runtime and implement the compact panel, device controls, connections and browser preview.
 - [x] Add pinned GitHub Actions for JavaScript/browser verification, Rust checks and native builds on Linux, macOS and Windows; add manual artifact packaging and Dependabot.
-- [x] Run checks, browser interaction and a fresh independent code review; fix material findings, document verification limits, then create and push the public repository (publication and remote CI are the final step).
+- [x] Run checks, browser interaction and a fresh independent code review; fix material findings, document verification limits, then create and push the public repository.
 
 ## Verification
 
