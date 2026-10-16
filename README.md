@@ -91,7 +91,7 @@ python3 -m unittest discover -s firmware/micropython -p 'test_*.py'
 pnpm desktop:build
 ```
 
-CI runs frontend/browser checks, Rust checks on three OSes and native compilation on three OSes. The manual **Package desktop artifacts** workflow produces installers as downloadable workflow artifacts. Signing and notarization are not configured; those artifacts are development builds, not signed public releases.
+CI runs frontend/browser checks, Rust checks on three OSes and native compilation on three OSes. The manual **Package Linux installers** workflow produces x86_64 `.deb` and AppImage packages with SHA-256 checksums as downloadable workflow artifacts. Its Ubuntu 24.04 build baseline targets contemporary Linux systems; older distributions may require a build using an older baseline. Signing and notarization are not configured; those artifacts are development builds, not signed public releases.
 
 Bootstrap verification covers the production web build, browser interactions, Rust core/runtime/provider/transport tests, and reference firmware protocol tests. [GitHub Actions](https://github.com/Edwarmkaer/boardmate/actions/runs/38852946152) also compiled the native application successfully on Linux, macOS and Windows. This confirms compilation, not physical hardware behavior. Live Groq inference, physical serial/Bluetooth hardware and installer packaging require separate validation.
 

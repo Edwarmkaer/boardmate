@@ -42,3 +42,7 @@ Use Vitest for protocol/SDK behavior, Rust unit and local-server integration tes
 3. A detached device, timeout or malformed frame must not hang the UI or trigger blind actuator retries.
 4. Browser simulation must remain explicitly separate from native hardware control.
 5. Public CI must use read-only permissions and must not require secrets to pass.
+
+## Linux installer delivery
+
+The user authorized generating AppImage and `.deb` packages for Linux only. Use the remote GitHub runner, run the project checks there, verify Debian metadata and generate checksums. Do not install or launch packages locally as part of packaging.

@@ -1,4 +1,4 @@
-name: Package desktop artifacts
+name: Package Linux installers
 
 on:
   workflow_dispatch:
@@ -8,12 +8,8 @@ permissions:
 
 jobs:
   package:
-    name: Package (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, macos-14, windows-latest]
-    runs-on: ${{ matrix.os }}
+    name: Linux x86_64 (AppImage and deb)
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -27,18 +23,33 @@ jobs:
       - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
         with:
           toolchain: 1.98.1
+          components: clippy,rustfmt
       - uses: Swatinem/rust-cache@49a0bdc70d2e1b713ca9e2869b211fcce03d3c1c # v2
       - name: Linux prerequisites
-        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf libudev-dev libdbus-1-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf libudev-dev libdbus-1-dev libfuse2t64
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @boardmate/desktop exec tauri build
+      - run: pnpm check
+      - run: pnpm test
+      - run: pnpm rust:check
+      - run: pnpm rust:test
+      - name: Build Linux installers
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: "1"
+        run: pnpm --filter @boardmate/desktop exec tauri build --bundles deb,appimage
+      - name: Verify packages and generate checksums
+        run: |
+          mkdir -p installers
+          cp target/release/bundle/deb/*.deb installers/
+          cp target/release/bundle/appimage/*.AppImage installers/
+          dpkg-deb --info installers/*.deb
+          test "$(dpkg-deb --field installers/*.deb Architecture)" = "amd64"
+          cd installers
+          sha256sum *.deb *.AppImage > SHA256SUMS.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: boardmate-${{ matrix.os }}
-          path: |
-            target/release/bundle/**
+          name: boardmate-linux-x86_64
+          path: installers/
           if-no-files-found: error
           retention-days: 14

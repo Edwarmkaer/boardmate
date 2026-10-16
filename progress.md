@@ -18,3 +18,7 @@ Node 22.23.2, pnpm 11.22.0 and Rust 1.98.1 were used. Native GTK/WebKit developm
 ## Resource preference
 
 The user requires consultation before resource-intensive local processes. This is recorded in `AGENTS.md`. The Next.js development server was stopped; an already-built static preview is served at http://127.0.0.1:1420 with approximately 23 MB resident server memory at the last observation. Native CI builds run on GitHub, not on the laptop.
+
+## Linux packaging
+
+Linux-only AppImage and `.deb` packaging is being prepared on GitHub Actions. The workflow retains read-only repository permissions, verifies amd64 Debian metadata and produces SHA-256 checksums. Local builds/installations are not part of this step.
